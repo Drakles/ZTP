@@ -1,6 +1,6 @@
 package Task0.Models;
 
-public class Purchaser {
+public class Purchaser extends Entity {
 private String name;
 private String surname;
 

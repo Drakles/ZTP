@@ -2,11 +2,12 @@ package Task0.Models;
 
 import java.util.Collection;
 
-public class Order {
+public class Order extends Entity {
   private Purchaser purchaser;
   private Collection<Service> services;
 
   public Order(Purchaser purchaser, Collection<Service> services) {
+    super();
     this.purchaser = purchaser;
     this.services = services;
   }

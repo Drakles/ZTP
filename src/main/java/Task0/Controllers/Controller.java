@@ -66,16 +66,18 @@ public class Controller {
     view.addServices();
     view.howMuchServices();
     int servicesNumber = sc.nextInt();
-    String name;
-    BigDecimal price;
     for (int i = 0; i < servicesNumber; i++) {
-      view.addServiceName();
-      name = sc.next();
-      view.addServicePrice();
-      price = sc.nextBigDecimal();
-      resultServices.add(new Service(name,price));
+      resultServices.add(addSingleService());
     }
     return resultServices;
+  }
+
+  private Service addSingleService() {
+    view.addServiceName();
+    String name = sc.next();
+    view.addServicePrice();
+    Double price = sc.nextDouble();
+    return new Service(name,price);
   }
 
   private Purchaser addPurchaser() {

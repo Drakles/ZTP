@@ -1,12 +1,10 @@
 package Task0.Models;
 
-import java.math.BigDecimal;
-
-public class Service {
+public class Service extends Entity {
 private String name;
-private BigDecimal price;
+private Double price;
 
-  public Service(String name, BigDecimal price) {
+  public Service(String name, Double price) {
     this.name = name;
     this.price = price;
   }
@@ -15,7 +13,7 @@ private BigDecimal price;
     return name;
   }
 
-  public BigDecimal getPrice() {
+  public Double getPrice() {
     return price;
   }
 
