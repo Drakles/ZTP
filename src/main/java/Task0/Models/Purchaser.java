@@ -5,6 +5,12 @@ private String name;
 private String surname;
 
 
+  public Purchaser(Integer id,String name, String surname) {
+    super(id);
+    this.name = name;
+    this.surname = surname;
+  }
+
   public Purchaser(String name, String surname) {
     this.name = name;
     this.surname = surname;

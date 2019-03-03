@@ -1,22 +1,16 @@
 package Task0;
 
-import Task0.Models.Purchaser;
-import Task0.Repository.PurchaserRepository;
+import Task0.Controllers.Controller;
+import Task0.Views.View;
 
 public class Main {
 
   public static void main(String[] args) {
 
-//    View view = new View();
-//
-//    Controller controller = new Controller(view);
-//
-//    controller.menu();
+    View view = new View();
 
-    PurchaserRepository pr = new PurchaserRepository();
-//    Purchaser p = new Purchaser("Jann","Kowalski");
-//    pr.create(p);
-    System.out.println(pr.read("1"));
+    Controller controller = new Controller(view);
+    controller.menu();
 
   }
 }

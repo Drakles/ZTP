@@ -1,6 +1,11 @@
 package Task0.Repository;
 
 import Task0.Models.Entity;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Collection;
 
 public interface IRepository<T extends Entity> {
@@ -9,14 +14,35 @@ public interface IRepository<T extends Entity> {
   String user = "root";
   String password = "E4qt9h21";
 
-  void create(T entity);
+  Integer create(T entity);
 
-  T read(String id);
+  T read(Integer id);
 
   Collection<T> read();
 
-  void update(String id);
+  void update(Integer id,T entity);
 
-  void delete(String id);
+  void delete(Integer id);
+
+  default void executeUpdate(String query){
+    try (Connection con = DriverManager.getConnection(url, user, password);
+        Statement st = con.createStatement()) {
+      st.executeUpdate(query);
+
+    } catch (SQLException e) {
+      System.out.println(e);
+    }
+  }
+
+  default ResultSet execute(String query){
+    try (Connection con = DriverManager.getConnection(url, user, password);
+        Statement st = con.createStatement()) {
+      return st.executeQuery(query);
+    } catch (SQLException e) {
+      System.out.println(e);
+    }
+    return null;
+  }
+
 
 }
