@@ -27,8 +27,9 @@ private String surname;
   @Override
   public String toString() {
     return "Purchaser{" +
-        "name='" + name + '\'' +
-        ", surname='" + surname + '\'' +
-        '}';
+        "id= " + getId() + '\'' +
+        "name= '" + name + '\'' +
+        ", surname= '" + surname + '\'' +
+        "}\n";
   }
 }

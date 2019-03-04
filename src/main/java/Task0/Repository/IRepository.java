@@ -3,9 +3,11 @@ package Task0.Repository;
 import Task0.Models.Entity;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.Collection;
 
 public interface IRepository<T extends Entity> {
@@ -30,7 +32,7 @@ public interface IRepository<T extends Entity> {
       st.executeUpdate(query);
 
     } catch (SQLException e) {
-      System.out.println(e);
+      System.out.println(e + " " + Arrays.toString(e.getStackTrace()));
     }
   }
 
@@ -39,10 +41,27 @@ public interface IRepository<T extends Entity> {
         Statement st = con.createStatement()) {
       return st.executeQuery(query);
     } catch (SQLException e) {
-      System.out.println(e);
+      System.out.println(e + " " + Arrays.toString(e.getStackTrace()));
     }
     return null;
   }
 
+  default Integer executeUpdateAndGetId(String query) {
+    Integer result = null;
+    try (Connection con = DriverManager.getConnection(url, user, password);
+        PreparedStatement st = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+      int rows = st.executeUpdate();
+      if(rows == 1){
+        ResultSet res = st.getGeneratedKeys();
+        if(res.next()){
+          result = res.getInt(1);
+        }
+      }
+
+    } catch (SQLException e) {
+      System.out.println(e + " " + Arrays.toString(e.getStackTrace()));
+    }
+    return result;
+  }
 
 }

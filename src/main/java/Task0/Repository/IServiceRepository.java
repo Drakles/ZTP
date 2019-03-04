@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface IServiceRepository extends IRepository<Service> {
 
-  void create(Order order);
-  void create(Service service, Integer orderId);
+  Collection<Integer> create(Order order);
+  Integer create(Service service, Integer orderId);
 
   List<Service> readByOrderId(Integer id);
 }

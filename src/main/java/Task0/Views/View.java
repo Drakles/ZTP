@@ -57,16 +57,16 @@ public class View {
   }
 
   public void showOrders(Collection<Order> orders) {
-    System.out.println("Orders: " + orders.toString());
+    System.out.println("Orders: \n" + orders.toString());
   }
 
   public void showServices(Collection<Service> services) {
-    System.out.println("Orders: " + services.toString());
+    System.out.println("Services: \n" + services.toString());
   }
 
   public void updateOrder() {
     System.out.println("Update order");
-    System.out.println("Type order id to update: ");
+    System.out.print("Type order id to update: ");
   }
 
   public void showOrder(Order order) {

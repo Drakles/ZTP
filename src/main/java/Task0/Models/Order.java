@@ -40,8 +40,9 @@ public class Order extends Entity {
   @Override
   public String toString() {
     return "Order{" +
-        "purchaser=" + purchaser +
-        ", services=" + services +
-        '}';
+        "id= " + getId() + '\'' +
+        ", purchaser = " + purchaser +
+        ", services = " + services +
+        "}\n";
   }
 }

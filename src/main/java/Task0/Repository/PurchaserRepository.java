@@ -4,6 +4,7 @@ import Task0.Models.Order;
 import Task0.Models.Purchaser;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,34 +15,34 @@ import java.util.List;
 public class PurchaserRepository implements IPurchaserRepository {
 
   @Override
-  public void create(Purchaser purchaser) {
+  public Integer create(Purchaser purchaser) {
     String query =
         "INSERT INTO Purchasers (name,surname) VALUES ("
             + "'" + purchaser.getName() + "'"
             + ",'" + purchaser.getSurname() + "'"
             + ");";
-    executeUpdate(query);
+    return executeUpdateAndGetId(query);
   }
 
   @Override
-  public void create(Order order) {
+  public Integer create(Order order) {
     Purchaser purchaser = order.getPurchaser();
     String query = "INSERT INTO Purchasers (orderId,name,surname) VALUES ("
         + "'" + order.getId() + "'"
         + ",'" + purchaser.getName() + "'"
         + ",'" + purchaser.getSurname() + "'"
         + ");";
-    executeUpdate(query);
+    return executeUpdateAndGetId(query);
   }
 
   @Override
-  public void create(Purchaser purchaser, Integer orderId) {
+  public Integer create(Purchaser purchaser, Integer orderId) {
     String query = "INSERT INTO Purchasers (orderId,name,surname) VALUES ("
         + "'" + orderId + "'"
         + ",'" + purchaser.getName() + "'"
         + ",'" + purchaser.getSurname() + "'"
         + ");";
-    executeUpdate(query);
+    return executeUpdateAndGetId(query);
   }
 
   @Override

@@ -9,6 +9,7 @@ import Task0.Repository.ServiceRepository;
 import Task0.Views.View;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Controller {
@@ -87,7 +88,7 @@ public class Controller {
     Service serviceOld = serviceRepository.read(id);
     view.showService(serviceOld);
     Service serviceUpdated = getServiceFromUser();
-    serviceRepository.update(serviceOld.getId(),serviceUpdated);
+    serviceRepository.update(serviceOld.getId(), serviceUpdated);
   }
 
   private void updateOrder() {
@@ -95,9 +96,9 @@ public class Controller {
     Integer id = sc.nextInt();
     Order orderOld = orderRepository.read(id);
     view.showOrder(orderOld);
-    Order orderUpdated = getOrderFromUser();
+    Order orderUpdated = updateOrderAttributesFromUser(orderRepository.read(id));
 
-    orderRepository.update(orderOld.getId(),orderUpdated);
+    orderRepository.update(orderOld.getId(), orderUpdated);
   }
 
   private void showServices() {
@@ -109,13 +110,12 @@ public class Controller {
   }
 
   private void addOrder() {
-    view.orderAdded(getOrderFromUser());
+    view.orderAdded(setOrderAttributesFromUser(new Order(orderRepository.create())));
   }
 
-  private Order getOrderFromUser(){
+  private Order setOrderAttributesFromUser(Order order) {
     view.addNewOrder();
     view.addPurchaser();
-    Order order = new Order(orderRepository.create());
 
     Purchaser purchaser = addPurchaser(order.getId());
     order.setPurchaser(purchaser);
@@ -123,6 +123,26 @@ public class Controller {
     Collection<Service> serviceList = addServices(order.getId());
     order.setServices(serviceList);
     return order;
+  }
+
+  private Order updateOrderAttributesFromUser(Order order){
+    view.addNewOrder();
+    view.addPurchaser();
+
+    order.setPurchaser(getPurchaserFromUser());
+    order.setServices(getServicesFromUser(order.getServices().size()));
+
+    return order;
+  }
+
+  private Collection<Service> getServicesFromUser(int servicesNumber) {
+    Collection<Service> resultServices = new ArrayList<>();
+    view.addServices();
+
+    for (int i = 0; i < servicesNumber; i++) {
+      resultServices.add(getServiceFromUser());
+    }
+    return resultServices;
   }
 
   private Collection<Service> addServices(Integer orderId) {
@@ -138,14 +158,14 @@ public class Controller {
 
   private Service addSingleService() {
     Service service = getServiceFromUser();
-    serviceRepository.create(service);
+    service.setId(serviceRepository.create(service));
 
     return service;
   }
 
   private Service addSingleService(Integer orderId) {
     Service service = getServiceFromUser();
-    serviceRepository.create(service, orderId);
+    service.setId(serviceRepository.create(service, orderId));
 
     return service;
   }
@@ -160,14 +180,13 @@ public class Controller {
 
   private Purchaser addPurchaser(Integer orderId) {
     Purchaser purchaser = getPurchaserFromUser();
-    purchaserRepository.create(purchaser, orderId);
+    purchaser.setId(purchaserRepository.create(purchaser, orderId));
     return purchaser;
   }
 
   private Purchaser addPurchaser() {
-
     Purchaser purchaser = getPurchaserFromUser();
-    purchaserRepository.create(purchaser);
+    purchaser.setId(purchaserRepository.create(purchaser));
 
     return purchaser;
   }

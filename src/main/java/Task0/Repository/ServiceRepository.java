@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,30 +15,32 @@ import java.util.List;
 public class ServiceRepository implements IServiceRepository {
 
   @Override
-  public void create(Service entity) {
+  public Integer create(Service entity) {
     String query =
         "INSERT INTO Services (name,price) VALUES ("
             + "'" + entity.getName() + "'"
             + ",'" + entity.getPrice() + "'"
             + ");";
 
-    executeUpdate(query);
+    return executeUpdateAndGetId(query);
   }
 
   @Override
-  public void create(Order order) {
-    order.getServices().forEach(s -> create(s, order.getId()));
+  public Collection<Integer> create(Order order) {
+    Collection<Integer> result = new ArrayList<>();
+    order.getServices().forEach(s -> result.add(create(s, order.getId())));
+    return result;
   }
 
   @Override
-  public void create(Service service, Integer orderId) {
+  public Integer create(Service service, Integer orderId) {
     String query = "INSERT INTO Services (serviceId,name,price,orderId) VALUES ("
         + "'" + service.getId() + "'"
         + ",'" + service.getName() + "'"
         + ",'" + service.getPrice() + "'"
         + ",'" + orderId + "'"
         + ");";
-    executeUpdate(query);
+    return executeUpdateAndGetId(query);
   }
 
   @Override
@@ -77,8 +80,8 @@ public class ServiceRepository implements IServiceRepository {
         Statement st = con.createStatement();
         ResultSet resultSet = st.executeQuery(query)) {
       while (resultSet.next()) {
-        result.add(new Service(Integer.valueOf(resultSet.getString(1)), resultSet.getString(3),
-            Double.valueOf(resultSet.getString(4))));
+        result.add(new Service(Integer.valueOf(resultSet.getString(1)), resultSet.getString(2),
+            Double.valueOf(resultSet.getString(3))));
       }
     } catch (SQLException e) {
       System.out.println(e);
@@ -91,7 +94,7 @@ public class ServiceRepository implements IServiceRepository {
     String query =
         "UPDATE Services SET name ='" + service.getName() + "', price ='" + service.getPrice()
             + "' "
-            + "WHERE " + "purchaserId =" + service.getId();
+            + "WHERE " + "serviceId =" + service.getId();
     executeUpdate(query);
   }
 

@@ -26,8 +26,9 @@ private Double price;
   @Override
   public String toString() {
     return "Service{" +
-        "name='" + name + '\'' +
+        "id= " + getId() + '\'' +
+        ", name='" + name + '\'' +
         ", price=" + price +
-        '}';
+        "}\n";
   }
 }
