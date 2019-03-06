@@ -83,7 +83,7 @@ public class PurchaserRepository implements IPurchaserRepository {
   public void update(Integer id, Purchaser purchaser) {
     String query =
         "UPDATE Purchasers SET name ='" + purchaser.getName() + "', surname ='" + purchaser
-            .getSurname() + "' WHERE purchaserId =" + purchaser.getId();
+            .getSurname() + "' WHERE purchaserId =" + id;
     executeUpdate(query);
   }
 

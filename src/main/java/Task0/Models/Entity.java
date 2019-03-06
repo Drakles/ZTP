@@ -1,8 +1,5 @@
 package Task0.Models;
 
-import java.util.Objects;
-import java.util.UUID;
-
 public abstract class Entity {
   private int id;
 

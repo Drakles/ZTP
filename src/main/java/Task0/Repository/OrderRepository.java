@@ -21,7 +21,6 @@ public class OrderRepository implements IOrderRepository {
 
   public Integer create(Order order) {
     String query = "INSERT INTO Orders (orderId) VALUE ();";
-//    Integer result = executeUpdateAndGetId(query);
 
     Integer result = null;
     try (Connection con = DriverManager.getConnection(url, user, password);
@@ -55,29 +54,6 @@ public class OrderRepository implements IOrderRepository {
     String query = "INSERT INTO Orders () VALUE ();";
     return executeUpdateAndGetId(query);
   }
-//
-//  public static void main(String[] args) {
-//    String query = "INSERT Orders() VALUES ();";
-//    Integer result = null;
-//    Connection connection = null;
-//    try {
-//      connection = DriverManager.getConnection(url, user, password);
-//      PreparedStatement preparedStatement = connection.prepareStatement(query,
-//          Statement.RETURN_GENERATED_KEYS);
-////      preparedStatement.setString(1,"Sran");
-////      preparedStatement.setString(2,"SKowalski");
-//      int rows = preparedStatement.executeUpdate();
-//      if (rows == 1) {
-//        ResultSet resultSet = preparedStatement.getGeneratedKeys();
-//        if (resultSet.next()) {
-//          result = resultSet.getInt(1);
-//          System.out.println(result);
-//        }
-//      }
-//    } catch (SQLException e) {
-//      e.printStackTrace();
-//    }
-//  }
 
   public Order read(Integer id) {
     String query = "SELECT * FROM Orders WHERE orderId=" + id + ";";
@@ -121,7 +97,7 @@ public class OrderRepository implements IOrderRepository {
     Order oldOrder = read(id);
 
     Purchaser purchaser = oldOrder.getPurchaser();
-    purchaserRepository.update(purchaser.getId(), purchaser);
+    purchaserRepository.update(purchaser.getId(), order.getPurchaser());
 
     Iterator<Service> oldServiceIter = oldOrder.getServices().iterator();
     Iterator<Service> newServiceIter = order.getServices().iterator();
@@ -129,7 +105,6 @@ public class OrderRepository implements IOrderRepository {
     while (oldServiceIter.hasNext()){
       serviceRepository.update(oldServiceIter.next().getId(),newServiceIter.next());
     }
-
   }
 
   public void delete(Integer id) {

@@ -9,7 +9,6 @@ import Task0.Repository.ServiceRepository;
 import Task0.Views.View;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class Controller {
@@ -23,10 +22,6 @@ public class Controller {
 
   public Controller(View view) {
     this.view = view;
-  }
-
-  public View getView() {
-    return view;
   }
 
   public void menu() {

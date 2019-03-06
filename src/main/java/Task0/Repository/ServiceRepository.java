@@ -51,8 +51,8 @@ public class ServiceRepository implements IServiceRepository {
         Statement st = con.createStatement();
         ResultSet resultSet = st.executeQuery(query)) {
       if (resultSet.next()) {
-        return new Service(Integer.valueOf(resultSet.getString(1)), resultSet.getString(3),
-            Double.valueOf(resultSet.getString(4)));
+        return new Service(Integer.valueOf(resultSet.getString(1)), resultSet.getString(2),
+            Double.valueOf(resultSet.getString(3)));
       }
 
     } catch (SQLException e) {
@@ -94,7 +94,7 @@ public class ServiceRepository implements IServiceRepository {
     String query =
         "UPDATE Services SET name ='" + service.getName() + "', price ='" + service.getPrice()
             + "' "
-            + "WHERE " + "serviceId =" + service.getId();
+            + "WHERE " + "serviceId =" + id;
     executeUpdate(query);
   }
 
