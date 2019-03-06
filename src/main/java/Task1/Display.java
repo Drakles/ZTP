@@ -1,31 +1,20 @@
 package Task1;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 class Display {
 
-  static String showAnimalData(Collection<? extends Animal> animals){
-    StringBuilder sb = new StringBuilder();
-    for (Animal animal : animals){
-      sb.append(animal.toString());
-    }
-    return sb.toString();
+  static String showAnimalData(Collection<? super Animal> animals){
+    return animals.stream().map(Object::toString).collect(Collectors.joining());
   }
 
-  static String showMammalData(Collection<? extends Mammal> mammals){
-    StringBuilder sb = new StringBuilder();
-    for (Mammal mammal : mammals){
-      sb.append(mammal.toString());
-    }
-    return sb.toString();
+  static String showMammalData(Collection<? super Mammal> mammals){
+    return mammals.stream().map(Object::toString).collect(Collectors.joining());
   }
 
-  static String showCatData(Collection<? extends Cat> cats){
-    StringBuilder sb = new StringBuilder();
-    for (Cat cat : cats){
-      sb.append(cat.toString());
-    }
-    return sb.toString();
+  static String showCatData(Collection<? super Cat> cats){
+    return cats.stream().map(Object::toString).collect(Collectors.joining());
   }
 }
 

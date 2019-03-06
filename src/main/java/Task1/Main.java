@@ -21,17 +21,19 @@ public class Main {
         cats.add(cat);
 
         System.out.println(Display.showAnimalData(animals));
-        //won't compile
-//        System.out.println(Display.showMammalData(animals));
-//        System.out.println(Display.showCatData(animals));
+        System.out.println(Display.showMammalData(animals));
+        System.out.println(Display.showCatData(animals));
 
-        System.out.println(Display.showAnimalData(mammals));
+        //won't compile
+//        System.out.println(Display.showAnimalData(mammals));
+
         System.out.println(Display.showMammalData(mammals));
-        //won't compile
-//        System.out.println(Display.showCatData(mammals));
+        System.out.println(Display.showCatData(mammals));
 
-        System.out.println(Display.showAnimalData(cats));
-        System.out.println(Display.showMammalData(cats));
+        //won't compile
+//        System.out.println(Display.showAnimalData(cats));
+//        System.out.println(Display.showMammalData(cats));
+
         System.out.println(Display.showCatData(cats));
 
 
@@ -54,7 +56,7 @@ public class Main {
 //Mammal has adHoc method with Float argument, but method with Number argument from it's
 // super class as well
 
-        System.out.println("\n Mammal");
+        System.out.println("\nMammal");
         mammal.adHoc(n);
 //      Number
         mammal.adHoc(f);

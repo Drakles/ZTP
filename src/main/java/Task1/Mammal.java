@@ -17,6 +17,6 @@ public class Mammal extends Animal {
   }
 
   void adHoc(Float f){
-    System.out.println("Float:" +f);
+    System.out.println("Float: " +f);
   }
 }
