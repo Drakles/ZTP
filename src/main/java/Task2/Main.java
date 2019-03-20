@@ -19,11 +19,29 @@ public class Main {
       Generic[] genArray = new Generic[]{genericConstructor.newInstance("Something"),
           genericConstructor.newInstance(4)};
 
-      for (Generic gen : genArray){
+      for (Generic gen : genArray) {
         System.out.println(gen);
       }
 
-    } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+      Pair<String> stringPair = new Pair<>("First", "Second");
+      System.out.println(stringPair);
+
+      Pair<String> cloneStringPair = stringPair.clone();
+
+      System.out.println(cloneStringPair);
+      System.out.println(stringPair.equals(cloneStringPair));
+
+      Pair<Integer> integerPair = new Pair<>(3, 4);
+      System.out.println(integerPair);
+
+      Pair<Integer> cloneIntegerPair = integerPair.clone();
+
+      System.out.println(cloneIntegerPair);
+
+//      Pair<String> errorPair = integerPair.clone();
+//      Pair<Integer> errorPair2 = stringPair.clone();
+
+    } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException | CloneNotSupportedException e) {
       e.printStackTrace();
     }
 
