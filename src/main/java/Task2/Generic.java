@@ -1,7 +1,7 @@
 package Task2;
 
 public class Generic<T> {
-  private final T field;
+  private T field;
 
   public Generic(T field) {
     this.field = field;
@@ -17,4 +17,9 @@ public class Generic<T> {
         "field=" + field +
         '}';
   }
+
+  public Generic() {
+
+  }
+
 }
