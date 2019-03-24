@@ -37,6 +37,7 @@ public class Main {
       Pair<Integer> cloneIntegerPair = integerPair.clone();
 
       System.out.println(cloneIntegerPair);
+      System.out.println(cloneIntegerPair.equals(integerPair));
 
 //      Pair<String> errorPair = integerPair.clone();
 //      Pair<Integer> errorPair2 = stringPair.clone();
