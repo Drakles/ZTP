@@ -30,5 +30,6 @@ public class Main {
 
         System.out.println(trees);
         System.out.println("Number of objects created: " + TreeImplBuilder.getTreeCreatedCounter());
+        System.out.println("Number of references in list: " + trees.size());
     }
 }
