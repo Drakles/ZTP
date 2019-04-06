@@ -22,11 +22,11 @@ public interface IRepository<T extends Entity> {
 
   Collection<T> read();
 
-  void update(Integer id,T entity);
+  void update(Integer id, T entity);
 
   void delete(Integer id);
 
-  default void executeUpdate(String query){
+  default void executeUpdate(String query) {
     try (Connection con = DriverManager.getConnection(url, user, password);
         Statement st = con.createStatement()) {
       st.executeUpdate(query);
@@ -36,7 +36,7 @@ public interface IRepository<T extends Entity> {
     }
   }
 
-  default ResultSet execute(String query){
+  default ResultSet execute(String query) {
     try (Connection con = DriverManager.getConnection(url, user, password);
         Statement st = con.createStatement()) {
       return st.executeQuery(query);
@@ -51,9 +51,9 @@ public interface IRepository<T extends Entity> {
     try (Connection con = DriverManager.getConnection(url, user, password);
         PreparedStatement st = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
       int rows = st.executeUpdate();
-      if(rows == 1){
+      if (rows == 1) {
         ResultSet res = st.getGeneratedKeys();
-        if(res.next()){
+        if (res.next()) {
           result = res.getInt(1);
         }
       }
@@ -63,5 +63,4 @@ public interface IRepository<T extends Entity> {
     }
     return result;
   }
-
 }

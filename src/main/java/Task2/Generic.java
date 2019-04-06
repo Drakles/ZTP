@@ -13,13 +13,8 @@ public class Generic<T> {
 
   @Override
   public String toString() {
-    return "Generic{" +
-        "field=" + field +
-        '}';
+    return "Generic{" + "field=" + field + '}';
   }
 
-  public Generic() {
-
-  }
-
+  public Generic() {}
 }

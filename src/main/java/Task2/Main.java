@@ -16,8 +16,10 @@ public class Main {
       Generic genInt = genericConstructor.newInstance(2);
       System.out.println(genInt);
 
-      Generic[] genArray = new Generic[]{genericConstructor.newInstance("Something"),
-          genericConstructor.newInstance(4)};
+      Generic[] genArray =
+          new Generic[] {
+            genericConstructor.newInstance("Something"), genericConstructor.newInstance(4)
+          };
 
       for (Generic gen : genArray) {
         System.out.println(gen);
@@ -39,12 +41,15 @@ public class Main {
       System.out.println(cloneIntegerPair);
       System.out.println(cloneIntegerPair.equals(integerPair));
 
-//      Pair<String> errorPair = integerPair.clone();
-//      Pair<Integer> errorPair2 = stringPair.clone();
+      //      Pair<String> errorPair = integerPair.clone();
+      //      Pair<Integer> errorPair2 = stringPair.clone();
 
-    } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException | CloneNotSupportedException e) {
+    } catch (NoSuchMethodException
+        | InstantiationException
+        | IllegalAccessException
+        | InvocationTargetException
+        | CloneNotSupportedException e) {
       e.printStackTrace();
     }
-
   }
 }

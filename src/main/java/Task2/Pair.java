@@ -1,6 +1,6 @@
 package Task2;
 
-public class Pair<T> implements Cloneable{
+public class Pair<T> implements Cloneable {
   private T first;
   private T second;
 
@@ -11,10 +11,7 @@ public class Pair<T> implements Cloneable{
 
   @Override
   public String toString() {
-    return "Pair{" +
-        "first=" + first +
-        ", second=" + second +
-        '}';
+    return "Pair{" + "first=" + first + ", second=" + second + '}';
   }
 
   @Override

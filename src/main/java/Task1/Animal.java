@@ -9,13 +9,10 @@ public class Animal {
 
   @Override
   public String toString() {
-    return "Animal{" +
-        "numberOfEyes=" + numberOfEyes +
-        '}';
+    return "Animal{" + "numberOfEyes=" + numberOfEyes + '}';
   }
 
-  void adHoc(Number n){
+  void adHoc(Number n) {
     System.out.println("Number: " + n);
   }
 }
-

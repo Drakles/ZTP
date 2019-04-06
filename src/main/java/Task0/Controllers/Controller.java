@@ -120,7 +120,7 @@ public class Controller {
     return order;
   }
 
-  private Order updateOrderAttributesFromUser(Order order){
+  private Order updateOrderAttributesFromUser(Order order) {
     view.addNewOrder();
     view.addPurchaser();
 
@@ -193,6 +193,5 @@ public class Controller {
     String surname = sc.next();
 
     return new Purchaser(name, surname);
-
   }
 }

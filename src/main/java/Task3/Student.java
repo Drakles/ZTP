@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Student implements Cloneable, Serializable {
-    private int id;
+  private int id;
 
   public Student(int id) {
     this.id = id;
@@ -19,7 +19,7 @@ public class Student implements Cloneable, Serializable {
   }
 
   public Student clone() throws CloneNotSupportedException {
-    return  (Student) super.clone();
+    return (Student) super.clone();
   }
 
   @Override
@@ -41,8 +41,6 @@ public class Student implements Cloneable, Serializable {
 
   @Override
   public String toString() {
-    return "Student{" +
-        "id=" + id +
-        '}';
+    return "Student{" + "id=" + id + '}';
   }
 }

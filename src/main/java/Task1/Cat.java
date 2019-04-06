@@ -10,14 +10,17 @@ public class Cat extends Mammal {
 
   @Override
   public String toString() {
-    return "Cat{" +
-        "lengthOfTail=" + lengthOfTail +
-        ", numberOfLimbs=" + numberOfLimbs +
-        ", numberOfEyes=" + numberOfEyes +
-        '}';
+    return "Cat{"
+        + "lengthOfTail="
+        + lengthOfTail
+        + ", numberOfLimbs="
+        + numberOfLimbs
+        + ", numberOfEyes="
+        + numberOfEyes
+        + '}';
   }
 
-  void adHoc(Integer i){
-    System.out.println("Integer: "+i);
+  void adHoc(Integer i) {
+    System.out.println("Integer: " + i);
   }
 }

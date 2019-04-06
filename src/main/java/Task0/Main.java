@@ -10,6 +10,5 @@ public class Main {
 
     Controller controller = new Controller(view);
     controller.menu();
-
   }
 }

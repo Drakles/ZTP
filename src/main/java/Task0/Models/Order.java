@@ -6,7 +6,7 @@ public class Order extends Entity {
   private Purchaser purchaser;
   private Collection<Service> services;
 
-  public Order(Integer id,Purchaser purchaser, Collection<Service> services) {
+  public Order(Integer id, Purchaser purchaser, Collection<Service> services) {
     super(id);
     this.purchaser = purchaser;
     this.services = services;
@@ -39,10 +39,14 @@ public class Order extends Entity {
 
   @Override
   public String toString() {
-    return "Order{" +
-        "id= " + getId() + '\'' +
-        ", purchaser = " + purchaser +
-        ", services = " + services +
-        "}\n";
+    return "Order{"
+        + "id= "
+        + getId()
+        + '\''
+        + ", purchaser = "
+        + purchaser
+        + ", services = "
+        + services
+        + "}\n";
   }
 }

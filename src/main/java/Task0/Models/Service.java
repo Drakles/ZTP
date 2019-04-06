@@ -1,8 +1,8 @@
 package Task0.Models;
 
 public class Service extends Entity {
-private String name;
-private Double price;
+  private String name;
+  private Double price;
 
   public Service(Integer id, String name, Double price) {
     super(id);
@@ -25,10 +25,15 @@ private Double price;
 
   @Override
   public String toString() {
-    return "Service{" +
-        "id= " + getId() + '\'' +
-        ", name='" + name + '\'' +
-        ", price=" + price +
-        "}\n";
+    return "Service{"
+        + "id= "
+        + getId()
+        + '\''
+        + ", name='"
+        + name
+        + '\''
+        + ", price="
+        + price
+        + "}\n";
   }
 }

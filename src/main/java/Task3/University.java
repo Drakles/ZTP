@@ -42,8 +42,7 @@ public class University implements Cloneable, Serializable {
       return false;
     }
     University that = (University) o;
-    return id == that.id &&
-        Objects.equals(departments, that.departments);
+    return id == that.id && Objects.equals(departments, that.departments);
   }
 
   @Override
@@ -53,9 +52,6 @@ public class University implements Cloneable, Serializable {
 
   @Override
   public String toString() {
-    return "University{" +
-        "id=" + id +
-        ", departments=" + departments +
-        '}';
+    return "University{" + "id=" + id + ", departments=" + departments + '}';
   }
 }

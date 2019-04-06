@@ -4,7 +4,6 @@ import Task0.Models.Order;
 import Task0.Models.Purchaser;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,8 +17,12 @@ public class PurchaserRepository implements IPurchaserRepository {
   public Integer create(Purchaser purchaser) {
     String query =
         "INSERT INTO Purchasers (name,surname) VALUES ("
-            + "'" + purchaser.getName() + "'"
-            + ",'" + purchaser.getSurname() + "'"
+            + "'"
+            + purchaser.getName()
+            + "'"
+            + ",'"
+            + purchaser.getSurname()
+            + "'"
             + ");";
     return executeUpdateAndGetId(query);
   }
@@ -27,21 +30,35 @@ public class PurchaserRepository implements IPurchaserRepository {
   @Override
   public Integer create(Order order) {
     Purchaser purchaser = order.getPurchaser();
-    String query = "INSERT INTO Purchasers (orderId,name,surname) VALUES ("
-        + "'" + order.getId() + "'"
-        + ",'" + purchaser.getName() + "'"
-        + ",'" + purchaser.getSurname() + "'"
-        + ");";
+    String query =
+        "INSERT INTO Purchasers (orderId,name,surname) VALUES ("
+            + "'"
+            + order.getId()
+            + "'"
+            + ",'"
+            + purchaser.getName()
+            + "'"
+            + ",'"
+            + purchaser.getSurname()
+            + "'"
+            + ");";
     return executeUpdateAndGetId(query);
   }
 
   @Override
   public Integer create(Purchaser purchaser, Integer orderId) {
-    String query = "INSERT INTO Purchasers (orderId,name,surname) VALUES ("
-        + "'" + orderId + "'"
-        + ",'" + purchaser.getName() + "'"
-        + ",'" + purchaser.getSurname() + "'"
-        + ");";
+    String query =
+        "INSERT INTO Purchasers (orderId,name,surname) VALUES ("
+            + "'"
+            + orderId
+            + "'"
+            + ",'"
+            + purchaser.getName()
+            + "'"
+            + ",'"
+            + purchaser.getSurname()
+            + "'"
+            + ");";
     return executeUpdateAndGetId(query);
   }
 
@@ -62,8 +79,11 @@ public class PurchaserRepository implements IPurchaserRepository {
         ResultSet resultSet = st.executeQuery(query)) {
 
       while (resultSet.next()) {
-        result.add(new Purchaser(Integer.valueOf(resultSet.getString(1)), resultSet.getString(3),
-            resultSet.getString(4)));
+        result.add(
+            new Purchaser(
+                Integer.valueOf(resultSet.getString(1)),
+                resultSet.getString(3),
+                resultSet.getString(4)));
       }
 
     } catch (SQLException e) {
@@ -82,8 +102,12 @@ public class PurchaserRepository implements IPurchaserRepository {
   @Override
   public void update(Integer id, Purchaser purchaser) {
     String query =
-        "UPDATE Purchasers SET name ='" + purchaser.getName() + "', surname ='" + purchaser
-            .getSurname() + "' WHERE purchaserId =" + id;
+        "UPDATE Purchasers SET name ='"
+            + purchaser.getName()
+            + "', surname ='"
+            + purchaser.getSurname()
+            + "' WHERE purchaserId ="
+            + id;
     executeUpdate(query);
   }
 
@@ -93,14 +117,15 @@ public class PurchaserRepository implements IPurchaserRepository {
     executeUpdate(query);
   }
 
-
   private Purchaser getPurchaser(String query) {
     try (Connection con = DriverManager.getConnection(url, user, password);
         Statement st = con.createStatement();
         ResultSet resultSet = st.executeQuery(query)) {
 
       if (resultSet.next()) {
-        return new Purchaser(Integer.valueOf(resultSet.getString(1)), resultSet.getString(3),
+        return new Purchaser(
+            Integer.valueOf(resultSet.getString(1)),
+            resultSet.getString(3),
             resultSet.getString(4));
       }
 

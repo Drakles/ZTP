@@ -1,11 +1,10 @@
 package Task0.Models;
 
 public class Purchaser extends Entity {
-private String name;
-private String surname;
+  private String name;
+  private String surname;
 
-
-  public Purchaser(Integer id,String name, String surname) {
+  public Purchaser(Integer id, String name, String surname) {
     super(id);
     this.name = name;
     this.surname = surname;
@@ -26,10 +25,16 @@ private String surname;
 
   @Override
   public String toString() {
-    return "Purchaser{" +
-        "id= " + getId() + '\'' +
-        "name= '" + name + '\'' +
-        ", surname= '" + surname + '\'' +
-        "}\n";
+    return "Purchaser{"
+        + "id= "
+        + getId()
+        + '\''
+        + "name= '"
+        + name
+        + '\''
+        + ", surname= '"
+        + surname
+        + '\''
+        + "}\n";
   }
 }

@@ -7,16 +7,17 @@ import java.util.Collection;
 public class View {
 
   public void showMenu() {
-    String sb = "Menu\n"
-        + "1. add new order\n"
-        + "2. add new service\n"
-        + "3. show orders\n"
-        + "4. show services\n"
-        + "5. update order\n"
-        + "6. update service\n"
-        + "7. delete order\n"
-        + "8. delete service\n"
-        + "\n 0 to exit ";
+    String sb =
+        "Menu\n"
+            + "1. add new order\n"
+            + "2. add new service\n"
+            + "3. show orders\n"
+            + "4. show services\n"
+            + "5. update order\n"
+            + "6. update service\n"
+            + "7. delete order\n"
+            + "8. delete service\n"
+            + "\n 0 to exit ";
     System.out.println(sb);
   }
 

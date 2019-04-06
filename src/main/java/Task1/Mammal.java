@@ -10,13 +10,10 @@ public class Mammal extends Animal {
 
   @Override
   public String toString() {
-    return "Mammal{" +
-        "numberOfLimbs=" + numberOfLimbs +
-        ", numberOfEyes=" + numberOfEyes +
-        '}';
+    return "Mammal{" + "numberOfLimbs=" + numberOfLimbs + ", numberOfEyes=" + numberOfEyes + '}';
   }
 
-  void adHoc(Float f){
-    System.out.println("Float: " +f);
+  void adHoc(Float f) {
+    System.out.println("Float: " + f);
   }
 }

@@ -102,8 +102,8 @@ public class OrderRepository implements IOrderRepository {
     Iterator<Service> oldServiceIter = oldOrder.getServices().iterator();
     Iterator<Service> newServiceIter = order.getServices().iterator();
 
-    while (oldServiceIter.hasNext()){
-      serviceRepository.update(oldServiceIter.next().getId(),newServiceIter.next());
+    while (oldServiceIter.hasNext()) {
+      serviceRepository.update(oldServiceIter.next().getId(), newServiceIter.next());
     }
   }
 

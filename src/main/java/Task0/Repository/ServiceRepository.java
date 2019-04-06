@@ -18,8 +18,12 @@ public class ServiceRepository implements IServiceRepository {
   public Integer create(Service entity) {
     String query =
         "INSERT INTO Services (name,price) VALUES ("
-            + "'" + entity.getName() + "'"
-            + ",'" + entity.getPrice() + "'"
+            + "'"
+            + entity.getName()
+            + "'"
+            + ",'"
+            + entity.getPrice()
+            + "'"
             + ");";
 
     return executeUpdateAndGetId(query);
@@ -34,12 +38,21 @@ public class ServiceRepository implements IServiceRepository {
 
   @Override
   public Integer create(Service service, Integer orderId) {
-    String query = "INSERT INTO Services (serviceId,name,price,orderId) VALUES ("
-        + "'" + service.getId() + "'"
-        + ",'" + service.getName() + "'"
-        + ",'" + service.getPrice() + "'"
-        + ",'" + orderId + "'"
-        + ");";
+    String query =
+        "INSERT INTO Services (serviceId,name,price,orderId) VALUES ("
+            + "'"
+            + service.getId()
+            + "'"
+            + ",'"
+            + service.getName()
+            + "'"
+            + ",'"
+            + service.getPrice()
+            + "'"
+            + ",'"
+            + orderId
+            + "'"
+            + ");";
     return executeUpdateAndGetId(query);
   }
 
@@ -51,7 +64,9 @@ public class ServiceRepository implements IServiceRepository {
         Statement st = con.createStatement();
         ResultSet resultSet = st.executeQuery(query)) {
       if (resultSet.next()) {
-        return new Service(Integer.valueOf(resultSet.getString(1)), resultSet.getString(2),
+        return new Service(
+            Integer.valueOf(resultSet.getString(1)),
+            resultSet.getString(2),
             Double.valueOf(resultSet.getString(3)));
       }
 
@@ -80,8 +95,11 @@ public class ServiceRepository implements IServiceRepository {
         Statement st = con.createStatement();
         ResultSet resultSet = st.executeQuery(query)) {
       while (resultSet.next()) {
-        result.add(new Service(Integer.valueOf(resultSet.getString(1)), resultSet.getString(2),
-            Double.valueOf(resultSet.getString(3))));
+        result.add(
+            new Service(
+                Integer.valueOf(resultSet.getString(1)),
+                resultSet.getString(2),
+                Double.valueOf(resultSet.getString(3))));
       }
     } catch (SQLException e) {
       System.out.println(e);
@@ -92,9 +110,14 @@ public class ServiceRepository implements IServiceRepository {
   @Override
   public void update(Integer id, Service service) {
     String query =
-        "UPDATE Services SET name ='" + service.getName() + "', price ='" + service.getPrice()
+        "UPDATE Services SET name ='"
+            + service.getName()
+            + "', price ='"
+            + service.getPrice()
             + "' "
-            + "WHERE " + "serviceId =" + id;
+            + "WHERE "
+            + "serviceId ="
+            + id;
     executeUpdate(query);
   }
 
