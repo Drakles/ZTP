@@ -51,14 +51,16 @@ public class Main {
         .setCourses(new ArrayList<>(courseList));
     students.add(sb.setDepartment(department2).createStudent());
 
-    System.out.println("\n" + students);
+    System.out.println("All students:");
+    System.out.println(students);
 
     // only female
     List<Student> femaleStudents =
         students.stream()
             .filter(s -> s.getGender().equals(Gender.FEMALE))
             .collect(Collectors.toList());
-    System.out.println("\n" + femaleStudents);
+    System.out.println("\nfemale students:");
+    System.out.println(femaleStudents);
 
     // only those who has Podstawy programownania
     List<Student> programmingStudents =
@@ -68,25 +70,27 @@ public class Main {
                     s.getCourses().stream().anyMatch(c -> c.name.equals("Podstawy programownania")))
             .collect(Collectors.toList());
 
-    System.out.println("\n" + programmingStudents);
+    System.out.println("\nStudents who are enrolled on Podstawy programowania:");
+    System.out.println(programmingStudents);
 
+    System.out.println("\nStudents mapped to Departments");
+    System.out.println(students.stream().map(Student::getDepartment).collect(Collectors.toList()));
+
+    System.out.println("\nStudent with the least number of courses");
     System.out.println(
-        "\n" + students.stream().map(Student::getDepartment).collect(Collectors.toList()));
+        students.stream().min(Comparator.comparing(s -> s.getCourses().size())).get());
 
-    // the least number of courses
+    System.out.println("\nStudent with the biggest number of courses");
     System.out.println(
-        "\n" + students.stream().min(Comparator.comparing(s -> s.getCourses().size())).get());
+        students.stream().max(Comparator.comparing(s -> s.getCourses().size())).get());
 
-    // the biggest number of courses
-    System.out.println(
-        "\n" + students.stream().max(Comparator.comparing(s -> s.getCourses().size())).get());
-
+    System.out.println("\nStudents per gender: ");
     students.stream()
         .collect(Collectors.groupingBy(Student::getGender))
         .forEach(
             (key, value) ->
                 System.out.println(
-                    "\nStudents "
+                    "Students "
                         + key
                         + " average age: "
                         + (value.stream().mapToInt(Student::getAge).sum() / value.size())));
