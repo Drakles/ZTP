@@ -118,4 +118,18 @@ public class WriterTest {
             .withSingleton()
             .getCode());
   }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void createSimpleClassClassNameErrorsHandling() {
+    Assert.assertEquals(
+        "public class Osoba{\n" + "private String imie = 'Jan';\n" + "}",
+        new Writer().createClass("").addFields("imie: String = 'Jan'").getCode());
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void createSimpleClassAttributeErrorsHandling() {
+    Assert.assertEquals(
+        "public class Osoba{\n" + "private String imie = 'Jan';\n" + "}",
+        new Writer().createClass("Osoba").addFields("unsupported").getCode());
+  }
 }
