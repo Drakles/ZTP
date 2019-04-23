@@ -8,22 +8,13 @@ public class WriterTest {
 
   @Test
   public void createSimpleClass() {
-    Writer writer = new Writer();
-
-    writer.createClass("Osoba");
-    writer.addFields("imie: String = 'Jan'");
-
     Assert.assertEquals(
-        "public class Osoba{\n" + "private String imie = 'Jan';\n" + "}", writer.getCode());
+        "public class Osoba{\n" + "private String imie = 'Jan';\n" + "}",
+        new Writer().createClass("Osoba").addFields("imie: String = 'Jan'").getCode());
   }
 
   @Test
   public void createSimpleClassWithGettersAndSetters() {
-    Writer writer = new Writer();
-
-    writer.createClass("Osoba");
-    writer.addFieldsWithGettersAndSetters("imie: String = 'Jan'");
-
     Assert.assertEquals(
         "public class Osoba{\n"
             + "private String imie = 'Jan';\n"
@@ -31,36 +22,32 @@ public class WriterTest {
             + "public  String getimie() {\n"
             + "   return this.imie;\n"
             + "}\n"
-            + "public  String setimie( String imie) {\n"
-            + "   return this.imie;\n"
+            + "public void setimie( String imie) {\n"
+            + " this.imie = imie;\n"
             + "}\n"
             + "}",
-        writer.getCode());
+        new Writer()
+            .createClass("Osoba")
+            .addFieldsWithGettersAndSetters("imie: String = 'Jan'")
+            .getCode());
   }
 
   @Test
   public void createClassWithMultipleFields() {
-    Writer writer = new Writer();
-
-    writer.createClass("Osoba");
-    writer.addFields("imie: String = 'Jan'", "nazwisko: String", "rok: int");
-
     Assert.assertEquals(
         "public class Osoba{\n"
             + "private String imie = 'Jan';\n"
             + "private String nazwisko;\n"
             + "private int rok;\n"
             + "}",
-        writer.getCode());
+        new Writer()
+            .createClass("Osoba")
+            .addFields("imie: String = 'Jan'", "nazwisko: String", "rok: int")
+            .getCode());
   }
 
   @Test
   public void createClassWithMultipleFieldsAndGettersAndSetters() {
-    Writer writer = new Writer();
-
-    writer.createClass("Osoba");
-    writer.addFieldsWithGettersAndSetters("imie: String = 'Jan'", "nazwisko: String", "rok: int");
-
     Assert.assertEquals(
         "public class Osoba{\n"
             + "private String imie = 'Jan';\n"
@@ -70,22 +57,65 @@ public class WriterTest {
             + "public  String getimie() {\n"
             + "   return this.imie;\n"
             + "}\n"
-            + "public  String setimie( String imie) {\n"
-            + "   return this.imie;\n"
+            + "public void setimie( String imie) {\n"
+            + " this.imie = imie;\n"
             + "}\n"
             + "public  String getnazwisko() {\n"
             + "   return this.nazwisko;\n"
             + "}\n"
-            + "public  String setnazwisko( String nazwisko) {\n"
-            + "   return this.nazwisko;\n"
+            + "public void setnazwisko( String nazwisko) {\n"
+            + " this.nazwisko = nazwisko;\n"
             + "}\n"
             + "public  int getrok() {\n"
             + "   return this.rok;\n"
             + "}\n"
-            + "public  int setrok( int rok) {\n"
-            + "   return this.rok;\n"
+            + "public void setrok( int rok) {\n"
+            + " this.rok = rok;\n"
             + "}\n"
             + "}",
-        writer.getCode());
+        new Writer()
+            .createClass("Osoba")
+            .addFieldsWithGettersAndSetters("imie: String = 'Jan'", "nazwisko: String", "rok: int")
+            .getCode());
+  }
+
+  @Test
+  public void createSimpleClassWithSingleton() {
+    Assert.assertEquals(
+        "public class Osoba{\n"
+            + "private String imie = 'Jan';\n"
+            + "private String nazwisko;\n"
+            + "private int rok;\n"
+            + "\n"
+            + "public  String getimie() {\n"
+            + "   return this.imie;\n"
+            + "}\n"
+            + "public void setimie( String imie) {\n"
+            + " this.imie = imie;\n"
+            + "}\n"
+            + "public  String getnazwisko() {\n"
+            + "   return this.nazwisko;\n"
+            + "}\n"
+            + "public void setnazwisko( String nazwisko) {\n"
+            + " this.nazwisko = nazwisko;\n"
+            + "}\n"
+            + "public  int getrok() {\n"
+            + "   return this.rok;\n"
+            + "}\n"
+            + "public void setrok( int rok) {\n"
+            + " this.rok = rok;\n"
+            + "}\n"
+            + "private static final Osoba instance = new Osoba();\n"
+            + "private Osoba() {\n"
+            + "}\n"
+            + "public static Osoba getOsoba() {\n"
+            + " return this.instance;\n"
+            + "}\n"
+            + "}",
+        new Writer()
+            .createClass("Osoba")
+            .addFieldsWithGettersAndSetters("imie: String = 'Jan'", "nazwisko: String", "rok: int")
+            .withSingleton()
+            .getCode());
   }
 }

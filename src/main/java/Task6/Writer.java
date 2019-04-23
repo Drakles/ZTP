@@ -6,13 +6,16 @@ import java.util.List;
 public class Writer {
 
   private StringBuilder builder = new StringBuilder();
+  private String className;
   private final List<String[]> fields = new LinkedList<>();
 
-  public void createClass(String className) {
+  public Writer createClass(String className) {
     builder.append("public class ").append(className).append("{\n");
+    this.className = className;
+    return this;
   }
 
-  public void addFieldsWithGettersAndSetters(String... fields) {
+  public Writer addFieldsWithGettersAndSetters(String... fields) {
     for (String field : fields) {
       addField(field.stripTrailing());
     }
@@ -24,18 +27,20 @@ public class Writer {
       addGetter(fieldName, type);
       addSetter(fieldName, type);
     }
+    return this;
   }
 
-  public void addFields(String... fields) {
+  public Writer addFields(String... fields) {
     for (String field : fields) {
       addField(field.stripTrailing());
     }
+    return this;
   }
 
   private void addSetter(String fieldName, String type) {
     builder
         .append("public ")
-        .append(type)
+        .append("void")
         .append(" ")
         .append("set")
         .append(fieldName)
@@ -45,8 +50,9 @@ public class Writer {
         .append(fieldName)
         .append(")")
         .append(" {\n")
-        .append("   return ")
-        .append("this.")
+        .append(" this.")
+        .append(fieldName)
+        .append(" = ")
         .append(fieldName)
         .append(";\n")
         .append("}\n");
@@ -67,14 +73,6 @@ public class Writer {
         .append(";\n")
         .append("}\n");
   }
-
-  //    private void addMethod(String[] typeAndFieldName) {
-  //        String returnType = typeAndFieldName[0];
-  //        String fieldName = typeAndFieldName[1];
-  //
-  //
-  //        builder.append("public ").append(returnType).append(" ").append(fieldName).append(" ")
-  //    }
 
   private void addField(String field) {
 
@@ -103,5 +101,32 @@ public class Writer {
   public String getCode() {
     builder.append("}");
     return builder.toString();
+  }
+
+  public Writer withSingleton() {
+    // instance field
+    builder
+        .append("private static final ")
+        .append(className)
+        .append(" instance ")
+        .append("= ")
+        .append("new ")
+        .append(className)
+        .append("();\n");
+
+    // private constructor
+    builder.append("private ").append(className).append("() {\n").append("}\n");
+
+    // getter for instance field
+    builder
+        .append("public static ")
+        .append(className)
+        .append(" get")
+        .append(className)
+        .append("() {\n")
+        .append(" return this.instance;")
+        .append("\n}\n");
+
+    return this;
   }
 }
