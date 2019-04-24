@@ -6,6 +6,6 @@ public class Main {
     new Writer()
         .createClass("Osoba")
         .addFieldsWithGettersAndSetters("imie: String = 'Jan'")
-        .saveToFile("task6/out/osoba.java");
+        .saveToFile("task6/out/Osoba.java");
   }
 }
