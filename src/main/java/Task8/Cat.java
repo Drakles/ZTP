@@ -9,7 +9,7 @@ public class Cat extends Mammal implements Loudable {
   }
 
   @Override
-  public String giveVoice(){
+  public String giveVoice() {
     return "miau";
   }
 

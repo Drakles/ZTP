@@ -1,15 +1,12 @@
 package Task8;
 
 public class Dolphin extends Mammal implements Loudable {
-    Dolphin(int numberOfEyes, int numberOfLimbs) {
-        super(numberOfEyes, numberOfLimbs);
-    }
+  Dolphin(int numberOfEyes, int numberOfLimbs) {
+    super(numberOfEyes, numberOfLimbs);
+  }
 
-    @Override
-    public String toString() {
-        return "Dolphin{" +
-                "numberOfLimbs=" + numberOfLimbs +
-                ", numberOfEyes=" + numberOfEyes +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "Dolphin{" + "numberOfLimbs=" + numberOfLimbs + ", numberOfEyes=" + numberOfEyes + '}';
+  }
 }

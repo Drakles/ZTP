@@ -1,7 +1,7 @@
 package Task8;
 
 public interface Loudable {
-    default String giveVoice(){
-        return "!!!";
-    }
+  default String giveVoice() {
+    return "!!!";
+  }
 }

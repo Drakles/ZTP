@@ -1,6 +1,6 @@
 package Task8;
 
-public class Animal implements Visible{
+public class Animal implements Visible {
   int numberOfEyes;
 
   Animal(int numberOfEyes) {
@@ -11,5 +11,4 @@ public class Animal implements Visible{
   public String toString() {
     return "Animal{" + "numberOfEyes=" + numberOfEyes + '}';
   }
-
 }
