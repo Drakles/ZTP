@@ -86,7 +86,7 @@ public class Writer {
         .append("public ")
         .append(returnType)
         .append(" ")
-        .append("get")
+        .append("getTwoArgs")
         .append(fieldName)
         .append("()")
         .append(" {\n")
@@ -145,7 +145,7 @@ public class Writer {
       builder
           .append("public static ")
           .append(className)
-          .append(" get")
+          .append(" getTwoArgs")
           .append(className)
           .append("() {\n")
           .append(" return this.instance;")

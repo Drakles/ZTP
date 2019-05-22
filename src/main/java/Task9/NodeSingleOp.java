@@ -3,16 +3,17 @@ package Task9;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Node implements Element {
+public class NodeSingleOp implements Element {
 
-  private String value;
-  private List<Node> children = new ArrayList<>();
+  private SingleOp value;
+  private List<Element> children = new ArrayList<>();
 
-  public Node(String value) {
-    this.value = value;
+  public NodeSingleOp(String value) {
+    this.value = Dictionary.getSingleArg(value);
   }
 
-  public void addChild(Node child) {
+  @Override
+  public void addChild(Element child) {
     children.add(child);
   }
 
@@ -23,7 +24,7 @@ public class Node implements Element {
     if (!children.isEmpty()) {
       System.out.print(",[");
       for (int i = 0; i < children.size(); i++) {
-        Node child = children.get(i);
+        Element child = children.get(i);
         child.accept(v);
         if (i + 1 < children.size()) {
           System.out.print(",");
@@ -36,6 +37,6 @@ public class Node implements Element {
 
   @Override
   public String getValue() {
-    return this.value;
+    return Dictionary.getSingleArg(this.value);
   }
 }
