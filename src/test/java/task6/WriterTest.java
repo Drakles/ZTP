@@ -1,6 +1,5 @@
 package task6;
 
-import Task6.Writer;
 import org.junit.Assert;
 import org.junit.Test;
 
