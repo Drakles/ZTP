@@ -1,5 +1,8 @@
 package task0.controllers;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Scanner;
 import task0.models.Order;
 import task0.models.Purchaser;
 import task0.models.Service;
@@ -7,9 +10,6 @@ import task0.repository.OrderRepository;
 import task0.repository.PurchaserRepository;
 import task0.repository.ServiceRepository;
 import task0.views.View;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Scanner;
 
 public class Controller {
 

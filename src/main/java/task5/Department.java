@@ -1,10 +1,10 @@
 package task5;
 
-import task3.Student;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import task3.Student;
 
 public class Department implements Cloneable, Serializable {
 

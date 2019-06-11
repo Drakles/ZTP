@@ -1,10 +1,10 @@
 package task4;
 
+import java.util.LinkedList;
+import java.util.List;
 import task4.Tree.Tree;
 import task4.Tree.TreeImplBuilder;
 import task4.Tree.TreeType;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Main {
 

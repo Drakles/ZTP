@@ -1,8 +1,8 @@
 package task0.views;
 
+import java.util.Collection;
 import task0.models.Order;
 import task0.models.Service;
-import java.util.Collection;
 
 public class View {
 

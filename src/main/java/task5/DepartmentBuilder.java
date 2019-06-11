@@ -1,7 +1,7 @@
 package task5;
 
-import task3.Student;
 import java.util.List;
+import task3.Student;
 
 public class DepartmentBuilder {
   private int number;

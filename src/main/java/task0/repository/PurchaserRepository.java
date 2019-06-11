@@ -1,7 +1,5 @@
 package task0.repository;
 
-import task0.models.Order;
-import task0.models.Purchaser;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -10,6 +8,8 @@ import java.sql.Statement;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import task0.models.Order;
+import task0.models.Purchaser;
 
 public class PurchaserRepository implements IPurchaserRepository {
 
